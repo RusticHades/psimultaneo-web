@@ -28,8 +28,13 @@ SECRET_KEY = 'django-insecure-+hbs^l7mmj+g4d@dy(!viyl&o#*o4x%_2t22@5t#vw=n+c-t)b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['psimultaneo.onrender.com', 'www.psimultaneo.com']
-
+ALLOWED_HOSTS = [
+    'https://psimultaneo-web.onrender.com',  # Dominio temporal de Render
+    'psimultaneo.com',           # Tu dominio personalizado
+    'www.psimultaneo.com',       # Versión con www
+    'localhost',
+    '127.0.0.1',
+]
 
 # Application definition
 
