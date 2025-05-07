@@ -1,0 +1,56 @@
+main {
+    max-width: 600px;
+    min-height: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+section h3{
+    color: var(--color-principal);
+    font-size: 2rem;    
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--color-principal);
+}
+
+input, textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-principal);
+    border-radius: 4px;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+button {
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-principal);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--color-secundario);
+}
+
+@media(max-width: 650px){
+    main{
+        box-shadow: none;
+    }
+}

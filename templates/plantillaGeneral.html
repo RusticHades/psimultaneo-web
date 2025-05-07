@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/cssGeneral.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>{% block title %}Mi Sitio{% endblock %}</title>
+    
+    <!-- Bloque para insertar CSS  -->
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <nav class="barra-navegacion">
+            <div class="logo-contenedor">
+                <img src="{% static 'image/LogoGeneral.png' %}" alt="Logo de Psimultanéo" class="logo">
+                <span class="nombre-sitio extenso">Psimultanéo: Psicología y Evaluación Educativa</span>
+                <span class="nombre-sitio acortado">Psimultanéo</span>
+            </div>
+
+            <ul class="menu">
+                <li><a href="{%url 'inicio' %}" class="inicio">Inicio</a></li>
+                <li><a href="{%url 'noticias' %}" class="noticias">Noticias</a></li>
+                <li><a href="{%url 'contacto' %}" class="contacto">Contacto</a></li>
+            </ul>
+
+            <div class="menu-icono">
+                <span></span>
+            </div>
+
+            <ul class="menu-desplegable">
+                <li><a href="{%url 'inicio' %}">Inicio</a></li>
+                <li><a href="{%url 'noticias' %}">Noticias</a></li>
+                <li><a href="{%url 'contacto' %}">Contacto</a></li>
+            </ul>
+        </nav>
+        {% block extra_header %}
+        {% endblock %}
+    </header>
+
+    <!-- Contenido principal para cada seccion-->
+    {% block content %}
+        <!-- Aquí se incluirá el contenido de las demás secciones -->
+    {% endblock %}
+
+    <!-- Pie de pagina -->
+    <footer>
+        <div class="pie-pagina">
+            <div class="pie-paginaInformacion">
+                <h3>Contacto</h3>
+                <p>Este es un espacio para compartir información sobre psicología, educación y evaluación.</p>
+                <p>Dirección: Ciudad de México, México</p>
+                <p>Te interesa alguno de nuestros servicios, te puedes comunicar a través de:</p>
+                <p>Email: psimultaneo@gmail.com</p>
+            </div>
+            <div class="pie-paginaRedes">
+                <h3>También búscanos en nuestras redes sociales</h3>
+                <ul class="redes-enlaces">
+                    <li><a target="_blank" href="https://www.instagram.com/psimultaneo?igsh=YjNicWxyYWsyZjk3"><i class="fab fa-instagram"></i></a></li>
+                    <li><a target="_blank" href="https://www.tiktok.com/@psimultaneo?_t=8pLE5ApYOV3&_r=1"><i class="fab fa-tiktok"></i></a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/share/LUM3EzMu74caFJYM/?mibextid=qi2Omg"><i class="fab fa-facebook"></i></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com/@Psimultáneo"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'javascript/jsMenuDesplegable.js' %}"></script>
+</body>
+</html>

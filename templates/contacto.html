@@ -1,0 +1,58 @@
+{% extends 'plantillaGeneral.html' %}
+{% load static %}
+
+{% block title %}
+Psimultaneo - Noticias
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cssContacto.css' %}">
+<style>
+    :root {
+        --color-principal: #349bdb;;
+        --color-secundario: #85a1c1; 
+        --color-terciario: #2ecc71;
+        --color-secundarioRGBA: rgba(46, 204, 113, 0.5);
+        --color-fondo: #ffffff;
+    }    
+    
+    .menu a.contacto {
+        color: var(--color-terciario);
+    }
+    
+    .menu a.contacto::after{
+        transform: scaleX(1);
+    }
+    
+    .menu a.contacto:hover::after, .menu a.contacto::after {
+        background-color: var(--color-terciario);
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<main>
+    <section class="contacto">
+        <h3>Contacto</h3>
+        <form  method="POST" action="{% url 'contacto' %}" >
+            {% csrf_token %}
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+                
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" required>
+                
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" required>
+                
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                
+            <!-- Botón de envío -->
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </section>
+</main>
+
+{% endblock %}

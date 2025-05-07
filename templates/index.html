@@ -1,0 +1,340 @@
+{% extends 'plantillaGeneral.html' %}
+{% load static %}
+
+{% block title %}
+Psimultaneo - Inicio
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cssInicio.css' %}">
+
+<style>
+:root {
+    --color-principal: #349bdb;
+    --color-secundario: #85a1c1; 
+    --color-terciario: #2ecc71;
+    --color-secundarioRGBA: rgba(46, 204, 113, 0.5);
+    --color-fondo: #ffffff;
+}
+header {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--color-secundarioRGBA), var(--color-secundarioRGBA)), url("{% static 'image/imagenNueva.jpg' %}");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.encabezado-info {
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    margin: 0 100px;
+    color: var(--color-fondo);
+}
+
+.encabezado-info h1 {
+    width: 55%;
+    position: relative;
+    font-size: 4rem;
+}
+
+.encabezado-info p {
+    font-size: 1rem;
+}
+
+.boton-registro {
+    font-size: 1.5rem;
+    text-decoration: none;
+    background-color: var(--color-terciario);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    transition: background-color 0.3s;
+    color: var(--color-fondo); 
+}
+
+.boton-registro:hover {
+    background-color: var(--color-secundario);
+}
+
+.menu a.inicio {
+    color: var(--color-terciario);
+}
+
+.menu a.inicio::after{
+    transform: scaleX(1);
+}
+
+.menu a.inicio:hover::after, .menu a.inicio::after {
+    background-color: var(--color-terciario);
+}
+@media (max-width: 900px) {
+    .encabezado-info h1{
+        font-size: 3.5em;
+    }
+}
+@media (max-width: 770px) {
+    .encabezado-info h1{
+        font-size: 3rem;
+        width: 200%;
+        text-align: center;
+    }
+
+    .encabezado-info {
+        justify-content: center;
+        height: 90vh;
+    }
+}
+
+@media (max-width: 500px) {
+    .encabezado-info h1{
+        font-size: 2.5rem;
+        padding: 0;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_header %}
+<div class="encabezado-info">
+    <h1>
+        Psimultanéo:
+        Psicología y Evaluación Educativa
+        <p>
+            Somos un equipo de profesionales con más de 15 años de experiencia, especializados en brindar acompañamiento en la búsqueda de soluciones a necesidades educativas y psicosociales. Diseñamos experiencias de aprendizaje como clases, talleres, cursos, conferencias, programas, procesos de evaluación y asesorías, adaptadas a diversos contextos y poblaciones.
+        </p>
+
+        <!-- <a class="boton-registro" href="#registro">Registrarse</a> -->
+    </h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="mision-vision">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">Misión y Visión</h2>
+            <div class="contenido">
+                <div class="mision">
+                    <h3>Misión</h3>
+                    <p>Ofrecer soluciones integrales en los campos de la educación y la psicología, impulsando el desarrollo de personas y organizaciones a través de experiencias de aprendizaje pertinentes, contextualizadas e innovadoras, que promuevan el bienestar y la sostenibilidad.</p>
+                </div>
+                <div class="vision">
+                    <h3>Visión</h3>
+                    <p>Ser una consultoría de referencia en el ámbito educativo y psicológico, reconocida por su enfoque ético, interdisciplinario y contextual, capaz de transformar realidades personales e institucionales mediante propuestas formativas con impacto social.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="valores">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">Valores</h2>
+            <div class="contenido">
+                <div class="valor">
+                    <h3>Ética y Respeto</h3>
+                    <p>Asumimos un compromiso constante con la reflexión y mejora de nuestras prácticas, valorando las necesidades, intereses y potencialidades de quienes colaboran con nosotros, respetando siempre la diversidad cultural y social de cada contexto.</p>
+                </div>
+                <div class="valor">
+                    <h3>Innovación y Creatividad</h3>
+                    <p>Promovemos el diseño ético de nuevas ideas, tecnologías y metodologías que fortalezcan el bienestar y el desarrollo tanto individual como organizacional, favoreciendo una cultura de cambio con sentido.</p>
+                </div>
+                <div class="valor">
+                    <h3>Excelencia y Disciplina</h3>
+                    <p>Nos guiamos por altos estándares de calidad, fundamentando cada servicio en el análisis reflexivo y la rigurosidad interdisciplinaria, para ofrecer resultados significativos y sostenibles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="servicios">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            <div class="carrusel">
+                <article class="servicio">
+                    <div class="servicio-content">
+                        <h2 class="titulo-servicio">Formación a madres, padres y cuidadores</h2>
+                    </div>
+                    <img src="{% static 'image/FormacionCuidadores.jpeg' %}" alt="Servicio 1" class="logo-servicio">
+                    <div class="servicio-content">
+                        <p class="descripcion-servicio">Ofrecemos orientación a familias y cuidadores mediante charlas, talleres y metodologías participativas, abordando temas relacionados con crianza respetuosa, desarrollo infantil y adolescente, así como orientación vocacional en momentos clave del ciclo de vida.</p>
+                    </div>
+                </article>
+
+                <article class="servicio">
+                    <div class="servicio-content">
+                        <h2 class="titulo-servicio">Programas de formación para instituciones educativas</h2>
+                    </div>
+                    <img src="{% static 'image/FormacionInstituciones.jpeg' %}" alt="Servicio 1" class="logo-servicio">
+                    <div class="servicio-content ">
+                        <p class="descripcion-servicio">Diseñamos e implementamos experiencias formativas dirigidas a docentes y equipos directivos, enfocadas en evaluación del aprendizaje, desarrollo integral, atención a necesidades psicosociales y enfoques pedagógicos innovadores como el aprendizaje basado en el juego.</p>
+                    </div>
+                </article>
+
+                <article class="servicio">
+                    <div class="servicio-content">
+                        <h2 class="titulo-servicio">Capacitación a empresas en aspectos psicosociales</h2>
+                    </div>
+                    <img src="{% static 'image/CapacitacionEmpresas.jpeg' %}" alt="Servicio 2" class="logo-servicio">
+                    <div class="servicio-content">
+                        <p class="descripcion-servicio">Acompañamos a empresas y sus equipos de trabajo en el fortalecimiento de habilidades psicosociales como la gestión emocional, la colaboración y el desarrollo profesional, fundamentales para el bienestar individual y el desempeño organizacional.</p>
+                    </div>
+                </article>
+
+                <article class="servicio">
+                    <div class="servicio-content">
+                        <h2 class="titulo-servicio">Evaluación educativa, institucional y psicosocial</h2>
+                    </div>
+                    <img src="{% static 'image/Evaluacion.jpeg' %}" alt="Servicio 3" class="logo-servicio">
+                    <div class="servicio-content">
+                        <p class="descripcion-servicio">Diseñamos e implementamos procesos de evaluación cualitativa y cuantitativa enfocados en diversos objetivos: diagnóstico institucional, clima laboral, programas académicos, formación docente, gestión escolar y evaluación del aprendizaje.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="carrusel-controles">
+                <button class="carrusel-boton" onclick="scrollCarrusel(-1)">&#10094;</button>
+                <button class="carrusel-boton" onclick="scrollCarrusel(1)">&#10095;</button>
+            </div>
+
+            <div class="flecha-flotante" id="flechaFlotante">&#8592;</div>
+        </div>
+    </section>
+
+    <section class="equipo">
+        <div class="container">
+            <h2>Conoce a Nuestro Equipo</h2>
+            <div class="equipo-carousel">
+                <div class="carousel-inner">
+                    <div class="miembro">
+                        <img src="{% static 'image/MiembroHectorGarduno.jpeg' %}" alt="Foto de Héctor Garduño">
+                        <div class="miembro-texto">
+                            <h3>Héctor Garduño</h3>
+                            <p>Director General</p>
+                            <p>Lic. en Psicología, Mtro en Psicología con Residencia en Evaluación Educativa por la Universidad Nacional Autónoma de México.</p>
+                            <a href="https://www.linkedin.com/in/psichectorgarduno?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Contacto</a>
+                        </div>
+                    </div>
+                    <div class="miembro">
+                        <img src="{% static 'image/MiembroWendyHernandez.jpeg' %}" alt="Foto de Wendy Hernandez">
+                        <div class="miembro-texto">
+                            <h3>Wendy Hernandez</h3>
+                            <p>Líder de proyectos educativos y diseñadora de programas psicosociales</p>
+                            <p>Psicóloga egresada de la Universidad Nacional Autónoma de México</p>
+                        </div>
+                    </div>
+                    <div class="miembro">
+                        <img src="{% static 'image/MiembroYaelGarcia.jpeg' %}" alt="Foto de Yael García">
+                        <div class="miembro-texto">
+                            <h3>Yael García</h3>
+                            <p>Líder de proyectos educativos y diseñador de programas psicosociales</p>
+                            <p>Psicólogo egresado de la Universidad Nacional Autónoma de México</p>
+                        </div>
+                    </div>
+                    <div class="miembro">
+                        <img src="{% static 'image/MiembroAldoGodoy.jpeg' %}" alt="Foto de Aldo Godoy">
+                        <div class="miembro-texto">
+                            <h3>Aldo Godoy</h3>
+                            <p>Líder de proyectos educativos y diseñador de programas psicosociales</p>
+                            <p>Psicólogo egresado de la Universidad Nacional Autónoma de México</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <a id="prev">Anterior</a>
+                <a id="next">Siguiente</a>
+            </div>
+        </div>
+    </section>
+    
+
+    <script>
+        function scrollCarrusel(direction) {
+            const carrusel = document.querySelector('.carrusel');
+            const scrollAmount = direction * 300;
+            carrusel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    </script>
+    
+    <script>
+        let flechaTimeout;
+        let flechaMostrada = false;
+        let haDeslizado = false; 
+        let desplazamientoInicial = 0; 
+        
+        function mostrarFlecha() {
+            if (!flechaMostrada) {
+                const flecha = document.getElementById('flechaFlotante');
+                flecha.style.display = 'block';
+                flecha.classList.add('animacion-deslizamiento');
+                flechaMostrada = true;
+            }
+        }
+        
+        function ocultarFlecha() {
+            const flecha = document.getElementById('flechaFlotante');
+            flecha.style.display = 'none';
+            clearTimeout(flechaTimeout);
+        }
+        
+        function iniciarFlecha() {
+            const serviciosSection = document.querySelector('.servicios .carrusel');
+        
+            serviciosSection.addEventListener('touchstart', function(e) {
+                desplazamientoInicial = e.touches[0].clientX;
+            });
+        
+            serviciosSection.addEventListener('touchmove', function(e) {
+                const touch = e.touches[0];
+                const desplazamientoX = desplazamientoInicial - touch.clientX;
+        
+                if (desplazamientoX >= 50 && !haDeslizado) { 
+                    ocultarFlecha();
+                    haDeslizado = true; 
+                }
+            });
+        
+            flechaTimeout = setTimeout(function() {
+                if (!haDeslizado) {
+                    mostrarFlecha();
+                }
+            }, 3000);
+        }
+        
+        function checkWidthAndInit() {
+            if (window.innerWidth <= 500) {
+                iniciarFlecha(); 
+            }
+        }
+        
+        window.addEventListener('load', checkWidthAndInit);
+        window.addEventListener('resize', checkWidthAndInit);
+    </script>
+    
+    <script>
+        const carousel = document.querySelector('.carousel-inner');
+        const members = document.querySelectorAll('.miembro');
+        const totalMembers = members.length;
+        let currentIndex = 0;
+
+        function slideTo(index) {
+            const memberWidth = members[index].offsetWidth; // Obtiene el ancho del miembro actual
+            carousel.style.transform = `translateX(-${index * memberWidth}px)`;
+        }
+
+        document.querySelector('#next').addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % totalMembers;
+            slideTo(currentIndex);
+        });
+
+        document.querySelector('#prev').addEventListener('click', function() {
+            currentIndex = (currentIndex - 1 + totalMembers) % totalMembers;
+            slideTo(currentIndex);
+        });
+    </script>
+    
+</main>
+{% endblock %}

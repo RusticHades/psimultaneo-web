@@ -1,0 +1,164 @@
+{% extends 'plantillaGeneral.html' %}
+{% load static %}
+
+{% block title %}
+Psimultaneo - Noticias
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cssNoticias.css' %}">
+
+<style>
+    :root {
+        --color-principal: #349bdb;;
+        --color-secundario: #85a1c1; 
+        --color-terciario: #2ecc71;
+        --color-secundarioRGBA: rgba(46, 204, 113, 0.5);
+        --color-fondo: #ffffff;
+    }    
+    
+    .menu a.noticias {
+        color: var(--color-terciario);
+    }
+    
+    .menu a.noticias::after{
+        transform: scaleX(1);
+    }
+    
+    .menu a.noticias:hover::after, .menu a.noticias::after {
+        background-color: var(--color-terciario);
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+<main>
+    {% if is_superuser %}
+    <section class="formulario-publicacion">
+        <h2>Subir Publicación</h2>
+        <form id="form-publicacion" action="{% url 'noticias' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-grupo">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+            </div>
+            <div class="form-grupo">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+            </div>
+            <div class="form-grupo">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <div class="form-grupo">
+                <label for="localizacion">Localización:</label>
+                <input type="text" id="localizacion" name="localizacion" required>
+            </div>
+            <div class="form-grupo">
+                <label class="subir-archivo-label" for="imagenes">Imágenes (opcional)</label>
+                <input class="subir-archivo" type="file" id="imagenes" name="imagenes" accept="image/jpeg, image/jpg" multiple>
+            </div>
+            <div class="form-grupo">
+                <label class="subir-archivo-label" for="videos">Videos (opcional)</label>
+                <input class="subir-archivo" type="file" id="videos" name="videos" accept="video/mp4, video/webm" multiple>
+            </div>
+
+            <div id="imagenes-previews" class="previews imagenes-previews">
+                <!-- Las previsualizaciones de imágenes se insertarán aquí -->
+            </div>
+            
+            <div id="videos-previews" class="previews videos-previews">
+                <!-- Las previsualizaciones de videos se insertarán aquí -->
+            </div>
+            
+            
+            <div class="form-grupo">
+                <button type="submit">Subir Publicación</button>
+            </div>
+        </form>
+    </section>
+    {% endif %}
+
+    <section class="noticias">
+        {% if publicaciones %}
+            <h2>Últimas Noticias</h2>
+            {% for publicacion in publicaciones %}
+                <article class="noticia">
+                    <h3>{{ publicacion.titulo }}</h3>
+                    <p>{{ publicacion.descripcion }}</p>
+                    <p><strong>Fecha:</strong> {{ publicacion.fecha }}</p>
+                    <p><strong>Localización:</strong> {{ publicacion.localizacion }}</p>
+                    
+                    {% if publicacion.imagenes.all %}
+                        <div class="imagenes-noticia">
+                            {% for imagen in publicacion.imagenes.all %}
+                                <img src="{{ imagen.imagen.url }}" alt="{{ publicacion.titulo }}">
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    {% if publicacion.videos.all %}
+                        <div class="videos-noticia">
+                            {% for video in publicacion.videos.all %}
+                                <video controls>
+                                    <source src="{{ video.video.url }}" type="video/mp4">
+                                </video>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Botón de edición visible solo para superusuarios -->
+                    {% if is_superuser %}
+                        <a href="{% url 'editar_publicacion' publicacion.id %}" class="btn btn-editar">Editar</a>
+                    {% endif %}
+                    
+                </article>
+            {% endfor %}
+        {% else %}
+            <h2>No hay noticias disponibles</h2>
+        {% endif %}
+    </section>    
+</main>
+
+<!-- Vista previa a pantalla completa -->
+<div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="">
+</div>
+
+<script src="{% static 'javascript/jsPrevisualizarArchivos.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const closeBtn = lightbox.querySelector('.close');
+
+    function openLightbox(src) {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = src;
+    }
+
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+    }
+
+    document.querySelectorAll('.imagenes-noticia img').forEach(img => {
+        img.addEventListener('click', function() {
+            openLightbox(this.src);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+});
+
+</script>
+{% endblock %}
+
+

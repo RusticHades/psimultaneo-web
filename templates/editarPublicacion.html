@@ -1,0 +1,120 @@
+{% extends 'plantillaGeneral.html' %}
+{% load static %}
+
+{% block title %}
+Psimultaneo - Noticias
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cssEditarNoticias.css' %}">
+
+<style>
+    :root {
+        --color-principal: #349bdb;;
+        --color-secundario: #85a1c1; 
+        --color-terciario: #2ecc71;
+        --color-secundarioRGBA: rgba(46, 204, 113, 0.5);
+        --color-fondo: #ffffff;
+    }    
+    
+    .menu a.noticias {
+        color: var(--color-terciario);
+    }
+    
+    .menu a.noticias::after{
+        transform: scaleX(1);
+    }
+    
+    .menu a.noticias:hover::after, .menu a.noticias::after {
+        background-color: var(--color-terciario);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Campos de la publicación -->
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" value="{{ publicacion.titulo }}" required>
+        
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required>{{ publicacion.descripcion }}</textarea>
+        
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" value="{{ publicacion.fecha|date:'Y-m-d' }}">
+        
+        <label for="localizacion">Localización:</label>
+        <input type="text" id="localizacion" name="localizacion" value="{{ publicacion.localizacion }}" required>
+        
+        <!-- Mostrar las imágenes actuales con opción para eliminar -->
+        {% if imagenes %}
+        <h3>Imágenes Actuales</h3>
+        <div class="imagenes-actuales">
+            {% for imagen in imagenes %}
+                <div class="imagen">
+                    <img src="{{ imagen.imagen.url }}" alt="Imagen de {{ publicacion.titulo }}">
+                    <label>
+                        <input type="checkbox" name="imagenes_eliminar" value="{{ imagen.id }}">
+                        Eliminar
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h3>En esta publicación no existen imagenes</h3>
+        {% endif %}
+        
+        <!-- Subir nuevas imágenes -->
+        <input class="subir-archivo" type="file" id="imagenes" name="nuevas_imagenes" multiple accept="image/*">
+        <label class="subir-archivo-label" for="imagenes">Subir Nuevas Imagenes</label>
+        <div id="imagenes-previews" class="previews imagenes-previews">
+            <!-- Las previsualizaciones de imágenes se insertarán aquí -->
+        </div>
+        
+        <!-- Mostrar los videos actuales con opción para eliminar -->
+        {% if videos %}
+        <h3>Videos Actuales</h3>
+        <div class="videos-actuales">
+            {% for video in videos %}
+                <div class="video">
+                    <video controls>
+                        <source src="{{ video.video.url }}" type="video/mp4">
+                    </video>
+                    <label>
+                        <input type="checkbox" name="videos_eliminar" value="{{ video.id }}">
+                        Eliminar
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <h3>En esta publicación no existen videos</h3>
+        {% endif %}
+        
+        <!-- Subir nuevos videos -->
+        <input class="subir-archivo" id="videos" type="file" name="nuevos_videos" multiple accept="video/*">
+        <label class="subir-archivo-label" for="videos">Subir Nuevos Videos</label>
+        <div id="videos-previews" class="previews videos-previews"></div>
+            <!-- Las previsualizaciones de videos se insertarán aquí -->
+        </div>
+        
+        <!-- Formulario para eliminar la publicación -->
+
+        <!-- Botón para guardar los cambios -->
+        <button type="submit" class="btn">Guardar cambios</button>
+    </form>
+    <form id="eliminar-publicacion-form" action="{% url 'eliminar_publicacion' publicacion.id %}" method="POST" onsubmit="return confirmarEliminacion();">
+        {% csrf_token %}
+        <button type="submit" class="btn eliminar">Eliminar Publicación</button>
+    </form>
+</main>
+<script src="{% static 'javascript/jsPrevisualizarArchivos.js' %}"></script>
+<script>
+    function confirmarEliminacion() {
+        return confirm('¿Estás seguro de que deseas eliminar esta publicación? Esta acción no se puede deshacer.');
+    }
+</script>    
+{% endblock %}
