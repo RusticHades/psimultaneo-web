@@ -8,6 +8,14 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.barra-navegacion {
+    z-index: 1000; /* Ya lo tienes, pero lo reforzamos */
+}
+
+.menu-desplegable {
+    z-index: 1001; /* Mayor que la barra de navegación */
+}
+
 h2 {
     text-align: center;
     color: var(--color-principal);

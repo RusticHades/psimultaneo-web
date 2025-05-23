@@ -2,8 +2,18 @@ main {
     max-width: 600px;
     min-height: 300px;
     margin: 20px auto;
+    position: relative;
+    z-index: -1;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.barra-navegacion {
+    z-index: 1000; /* Ya lo tienes, pero lo reforzamos */
+}
+
+.menu-desplegable {
+    z-index: 1001; /* Mayor que la barra de navegación */
 }
 
 section h3{
