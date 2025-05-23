@@ -31,7 +31,7 @@ urlpatterns = [
     path('noticias/editarPublicacion/<int:id>/', editar_publicacion, name='editar_publicacion'),
     path('noticias/eliminarPublicacion/<int:id>/', eliminar_publicacion, name='eliminar_publicacion'),
     path('contacto/', contacto, name='contacto')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if settings.DEBUG:
